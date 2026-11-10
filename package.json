@@ -13,6 +13,7 @@
     "db:generate": "prisma generate",
     "db:seed": "node prisma/seed.js",
     "db:studio": "prisma studio",
+    "admin:set": "node scripts/set-admin.js",
     "use:postgres": "node scripts/switch-db.js postgres",
     "use:sqlite": "node scripts/switch-db.js sqlite"
   },
