@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dima_cinema_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://dima_user:dima_secure_password@postgres:5432/dima_cinema?schema=public
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=dima-cinema-super-secure-production-jwt-secret-key-32chars
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - TMDB_API_KEY=${TMDB_API_KEY}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: dima_cinema_postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=dima_user
+      - POSTGRES_PASSWORD=dima_secure_password
+      - POSTGRES_DB=dima_cinema
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
