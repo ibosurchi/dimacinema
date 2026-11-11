@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import SessionProvider from "@/components/providers/SessionProvider";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
@@ -55,6 +56,17 @@ export default function RootLayout({
         <meta name="color-scheme" content="dark" />
       </head>
       <body className="min-h-screen bg-background text-text-primary flex flex-col antialiased selection:bg-primary selection:text-white">
+        <NextTopLoader
+          color="#8B5CF6"
+          initialPosition={0.15}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={250}
+          shadow="0 0 10px #8B5CF6,0 0 5px #EC4899"
+        />
         <SessionProvider>
           <Navbar />
           <main className="flex-1 w-full">{children}</main>
